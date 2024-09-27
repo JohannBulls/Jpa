@@ -187,6 +187,9 @@ git clone https://github.com/JohannBulls/Jpa.git
 ```
 
 ### Setting up MySQL
+```bash
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=mydatabase -e MYSQL_USER=user -e MYSQL_PASSWORD=password -p 3306:3306 -d mysql:8.0
+```
 
 1. Create a MySQL database for the project.
 ```sql
