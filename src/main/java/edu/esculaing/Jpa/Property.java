@@ -4,69 +4,106 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+/**
+ * Entity class representing a property.
+ */
 @Entity
 public class Property {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
-  
-  private String address;
-  private Double price;
-  private Double size;
-  private String description;
+    /**
+     * Unique identifier for the property.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-  protected Property() {}
+    /**
+     * Address of the property.
+     */
+    private String address;
 
-  public Property(String address, Double price, Double size, String description) {
-    this.address = address;
-    this.price = price;
-    this.size = size;
-    this.description = description;
-  }
+    /**
+     * Price of the property.
+     */
+    private Double price;
 
-  // Getters y Setters
-  public Long getId() {
-    return id;
-  }
+    /**
+     * Size of the property in square meters.
+     */
+    private Double size;
 
-  public String getAddress() {
-    return address;
-  }
+    /**
+     * Description of the property.
+     */
+    private String description;
 
-  public void setAddress(String address) {
-    this.address = address;
-  }
+    /**
+     * Default constructor required by JPA.
+     */
+    public Property() {}
 
-  public Double getPrice() {
-    return price;
-  }
+    /**
+     * Constructor to create a new property.
+     *
+     * @param address     Address of the property.
+     * @param price       Price of the property.
+     * @param size        Size of the property.
+     * @param description Description of the property.
+     */
+    public Property(String address, Double price, Double size, String description) {
+        this.address = address;
+        this.price = price;
+        this.size = size;
+        this.description = description;
+    }
 
-  public void setPrice(Double price) {
-    this.price = price;
-  }
+    // Getters and Setters
 
-  public Double getSize() {
-    return size;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public void setSize(Double size) {
-    this.size = size;
-  }
+    public String getAddress() {
+        return address;
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    public Double getPrice() {
+        return price;
+    }
 
-  @Override
-  public String toString() {
-    return String.format(
-        "Property[id=%d, address='%s', price=%.2f, size=%.2f, description='%s']",
-        id, address, price, size, description);
-  }
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Double getSize() {
+        return size;
+    }
+
+    public void setSize(Double size) {
+        this.size = size;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * Returns a string representation of the property.
+     *
+     * @return String representation of the property.
+     */
+    @Override
+    public String toString() {
+        return String.format(
+                "Property[id=%d, address='%s', price=%.2f, size=%.2f, description='%s']",
+                id, address, price, size, description);
+    }
 }
