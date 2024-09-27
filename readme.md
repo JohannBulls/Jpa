@@ -285,7 +285,7 @@ Before deploying, ensure you have:
    ```
    - Create the database for the property management system.
    ```sql
-   CREATE DATABASE property_management;
+   CREATE DATABASE mydatabase;
    ```
 
 #### 3. Modify Spring Boot Configuration
@@ -293,7 +293,7 @@ Before deploying, ensure you have:
 1. **Edit `application.properties`:**
    - Modify the `application.properties` file in your Spring Boot project to point to your RDS MySQL instance.
    ```properties
-   spring.datasource.url=jdbc:mysql://your-rds-endpoint:3306/property_management
+   spring.datasource.url=jdbc:mysql://your-rds-endpoint:3306/mydatabase
    spring.datasource.username=your-username
    spring.datasource.password=your-password
    spring.jpa.hibernate.ddl-auto=update
@@ -308,7 +308,7 @@ Before deploying, ensure you have:
 3. **Transfer the JAR to the EC2 Instance:**
    - Use SCP to transfer the JAR file to your EC2 instance.
    ```bash
-   scp -i your-key.pem target/property-management-system.jar ec2-user@your-ec2-public-ip:/home/ec2-user/
+   scp -i your-key.pem target/Jpa-0.0.1-SNAPSHOT.jar ec2-user@your-ec2-public-ip:/home/ec2-user/
    ```
 
 #### 4. Run the Application on EC2
@@ -316,14 +316,14 @@ Before deploying, ensure you have:
 1. **Run the Spring Boot Application:**
    - Connect to your EC2 instance and run the Spring Boot JAR file.
    ```bash
-   java -jar property-management-system.jar
+   java -jar Jpa-0.0.1-SNAPSHOT.jar
    ```
 
 2. **Configure the Application to Run as a Service (Optional):**
    - To ensure the application keeps running, you can configure it to run as a service using systemd.
    - Create a service file:
    ```bash
-   sudo nano /etc/systemd/system/property-management.service
+   sudo nano /etc/systemd/system/mydatabase.service
    ```
    - Add the following configuration:
    ```ini
@@ -333,7 +333,7 @@ Before deploying, ensure you have:
 
    [Service]
    User=ec2-user
-   ExecStart=/usr/bin/java -jar /home/ec2-user/property-management-system.jar
+   ExecStart=/usr/bin/java -jar /home/ec2-user/Jpa-0.0.1-SNAPSHOT.jar
    SuccessExitStatus=143
 
    [Install]
@@ -341,8 +341,8 @@ Before deploying, ensure you have:
    ```
    - Start and enable the service:
    ```bash
-   sudo systemctl start property-management
-   sudo systemctl enable property-management
+   sudo systemctl start Jpa-0.0.1-SNAPSHOT
+   sudo systemctl enable Jpa-0.0.1-SNAPSHOT
    ```
 
 #### 5. Access the Application
