@@ -190,12 +190,12 @@ git clone https://github.com/JohannBulls/Jpa.git
 
 1. Create a MySQL database for the project.
 ```sql
-CREATE DATABASE property_management;
+CREATE DATABASE mydatabase;
 ```
 
 2. Configure the database connection in `src/main/resources/application.properties`:
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/property_management
+spring.datasource.url=jdbc:mysql://localhost:3306/mydatabase
 spring.datasource.username=your_username
 spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
