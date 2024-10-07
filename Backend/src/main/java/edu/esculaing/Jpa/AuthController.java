@@ -5,6 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller class for handling user authentication-related requests.
+ * Provides endpoints for user registration and login.
+ */
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/auth")
@@ -13,6 +17,13 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+    /**
+     * Registers a new user in the system.
+     *
+     * @param user The user object to be registered.
+     * @return A ResponseEntity with a message indicating if the user
+     *         was successfully registered or if the user already exists.
+     */
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User user) {
         String responseMessage = authService.registerUser(user);
@@ -22,6 +33,12 @@ public class AuthController {
         return new ResponseEntity<>(responseMessage, HttpStatus.CREATED);
     }
 
+    /**
+     * Authenticates a user based on provided credentials.
+     *
+     * @param loginRequest The login request containing the user's credentials.
+     * @return A ResponseEntity indicating whether the login was successful or not.
+     */
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody User loginRequest) {
         boolean isAuthenticated = authService.authenticateUser(loginRequest);

@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service class for handling user authentication and registration.
+ * This service encrypts passwords and verifies login credentials.
+ */
 @Service
 public class AuthService {
 
@@ -21,16 +25,16 @@ public class AuthService {
      */
     public String registerUser(User user) {
         if (userRepository.findByUsername(user.getUsername()) != null) {
-            return "Usuario ya registrado";
+            return "User already registered";
         }
-        // Encripta la contraseña antes de guardarla en la base de datos
+        // Encrypt the password before saving it to the database
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        return "Usuario registrado correctamente";
+        return "User successfully registered";
     }
 
     /**
-     * Authenticates a user by comparing the password with the stored hash.
+     * Authenticates a user by comparing the provided password with the stored hash.
      * 
      * @param loginRequest The login request containing the username and password.
      * @return A boolean indicating if the authentication was successful.
@@ -39,19 +43,19 @@ public class AuthService {
         User user = userRepository.findByUsername(loginRequest.getUsername());
         
         if (user == null) {
-            System.out.println("Usuario no encontrado");
+            System.out.println("User not found");
             return false;
         }
     
-        System.out.println("Contraseña ingresada en texto plano: " + loginRequest.getPassword());
-        System.out.println("Hash en la base de datos: " + user.getPassword());
+        System.out.println("Entered plaintext password: " + loginRequest.getPassword());
+        System.out.println("Stored hashed password: " + user.getPassword());
     
-        // Comparar las contraseñas
+        // Compare the passwords
         if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
-            System.out.println("¡Contraseña correcta!");
+            System.out.println("Correct password!");
             return true;
         } else {
-            System.out.println("Contraseña incorrecta");
+            System.out.println("Incorrect password");
             return false;
         }
     }

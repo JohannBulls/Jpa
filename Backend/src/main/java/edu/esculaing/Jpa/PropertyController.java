@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST Controller for managing property-related requests.
+ * Provides endpoints for CRUD operations on properties.
+ */
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/properties")
@@ -13,21 +17,45 @@ public class PropertyController {
     @Autowired
     private PropertyRepository propertyRepository;
 
+    /**
+     * Retrieves a list of all properties.
+     *
+     * @return A list of Property objects.
+     */
     @GetMapping
     public List<Property> getAllProperties() {
         return (List<Property>) propertyRepository.findAll();
     }
 
+    /**
+     * Retrieves a property by its ID.
+     *
+     * @param id The ID of the property to retrieve.
+     * @return The Property object if found, or null if not found.
+     */
     @GetMapping("/{id}")
     public Property getPropertyById(@PathVariable Long id) {
         return propertyRepository.findById(id).orElse(null);
     }
 
+    /**
+     * Creates a new property.
+     *
+     * @param property The Property object to create.
+     * @return The created Property object.
+     */
     @PostMapping
     public Property createProperty(@RequestBody Property property) {
         return propertyRepository.save(property);
     }
 
+    /**
+     * Updates an existing property.
+     *
+     * @param id The ID of the property to update.
+     * @param property The updated property data.
+     * @return The updated Property object, or null if the property was not found.
+     */
     @PutMapping("/{id}")
     public Property updateProperty(@PathVariable Long id, @RequestBody Property property) {
         Property existingProperty = propertyRepository.findById(id).orElse(null);
@@ -41,6 +69,11 @@ public class PropertyController {
         return null;
     }
 
+    /**
+     * Deletes a property by its ID.
+     *
+     * @param id The ID of the property to delete.
+     */
     @DeleteMapping("/{id}")
     public void deleteProperty(@PathVariable Long id) {
         propertyRepository.deleteById(id);

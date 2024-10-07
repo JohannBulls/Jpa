@@ -4,6 +4,12 @@ import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * Register component for user registration.
+ * 
+ * This component allows users to create a new account by entering a username, password, and password confirmation.
+ * The component handles form submission, password visibility toggling, and validation.
+ */
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -13,16 +19,22 @@ function Register() {
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
+  /**
+   * Handles the registration form submission.
+   * Validates the passwords, sends a POST request to the backend, and navigates to the login page upon success.
+   * 
+   * @param {object} event - The form submission event.
+   */
   const handleRegister = async (event) => {
     event.preventDefault();
   
     if (password !== confirmPassword) {
-      setError('Las contraseñas no coinciden');
+      setError('Passwords do not match');
       return;
     }
 
     if (password.length < 8 || password.length > 20) {
-      setError('La contraseña debe tener entre 8 y 20 caracteres');
+      setError('Password must be between 8 and 20 characters');
       return;
     }
   
@@ -32,21 +44,27 @@ function Register() {
         password,
       });
   
-      if (response.data === "Usuario registrado correctamente") {
+      if (response.data === "User successfully registered") {
         navigate('/login');
       } else {
-        setError('Error al registrar el usuario');
+        setError('Error registering user');
       }
     } catch (error) {
-      setError('Error en el registro');
-      console.error('Error registrando usuario:', error);
+      setError('Registration error');
+      console.error('Error registering user:', error);
     }
   }; 
 
+  /**
+   * Toggles the visibility of the password field.
+   */
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
+  /**
+   * Toggles the visibility of the confirm password field.
+   */
   const toggleConfirmPasswordVisibility = () => {
     setConfirmPasswordVisible(!confirmPasswordVisible);
   };
@@ -54,13 +72,13 @@ function Register() {
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
       <div className="card p-4" style={{ width: '400px' }}>
-        <h2 className="text-center">Registrarse</h2>
+        <h2 className="text-center">Register</h2>
 
         {error && <div className="alert alert-danger">{error}</div>}
 
         <form onSubmit={handleRegister}>
           <div className="mb-3">
-            <label htmlFor="username" className="form-label">Nombre de Usuario</label>
+            <label htmlFor="username" className="form-label">Username</label>
             <input
               type="text"
               id="username"
@@ -73,7 +91,7 @@ function Register() {
           
           <div className="mb-3 position-relative">
             <label htmlFor="password" className="form-label">
-              Contraseña (Debe tener entre 8 y 20 caracteres)
+              Password
             </label>
             <div className="input-group">
               <input
@@ -86,14 +104,16 @@ function Register() {
                 minLength="8"
                 maxLength="20"
               />
+              
               <span className="input-group-text" onClick={togglePasswordVisibility}>
                 <FontAwesomeIcon icon={passwordVisible ? faEyeSlash : faEye} />
               </span>
             </div>
+            <div id="emailHelp" class="form-text">Must be between 8 and 20 characters</div>
           </div>
           
           <div className="mb-3 position-relative">
-            <label htmlFor="confirmPassword" className="form-label">Confirmar Contraseña</label>
+            <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
             <div className="input-group">
               <input
                 type={confirmPasswordVisible ? "text" : "password"}
@@ -109,11 +129,11 @@ function Register() {
             </div>
           </div>
           
-          <button type="submit" className="btn btn-primary w-100">Registrar</button>
+          <button type="submit" className="btn btn-primary w-100">Register</button>
         </form>
 
         <p className="text-center mt-3">
-          ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link>
+          Already have an account? <Link to="/login">Log in here</Link>
         </p>
       </div>
     </div>

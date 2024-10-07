@@ -11,3 +11,75 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body {
+  background: linear-gradient(135deg, #1c1f60, #6e44ff);
+  background-size: cover;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  color: white;
+}
+
+.container {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(10px); 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+h1, h2, label, p {
+  color: #000000;
+}
+
+.btn {
+  background-color: #6e44ff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #6e44ff; 
+  border: 1px solid #6e44ff;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: white; 
+  color: #6e44ff; 
+  border: 1px solid #6e44ff;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: white;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+.table {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.table thead {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
