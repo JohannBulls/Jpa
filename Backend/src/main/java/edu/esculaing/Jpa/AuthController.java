@@ -28,14 +28,23 @@ public class AuthController {
 
     @PostMapping("/login")
     public String loginUser(@RequestBody User loginRequest) {
+
         User user = userRepository.findByUsername(loginRequest.getUsername());
+
         if (user != null) {
+            // Imprimir la contraseña en hash que está en la base de datos y login
+            System.out.println("Hash almacenado: " + user.getPassword());
+            System.out.println("Hash Login: " + loginRequest.getPassword());
+
             if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+                System.out.println("Contraseña correcta");
                 return "Login exitoso";
             } else {
+                System.out.println("Contraseña incorrecta");
                 return "Credenciales inválidas";
             }
         }
+        System.out.println("Usuario no encontrado");
         return "Usuario no encontrado";
     }
 }
