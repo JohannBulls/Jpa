@@ -19,7 +19,7 @@ public class User {
 
     public User(String username, String password) {
         this.username = username;
-        this.password = new BCryptPasswordEncoder().encode(password);
+        this.password = password; 
     }
 
     public Long getId() {
@@ -39,6 +39,6 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = new BCryptPasswordEncoder().encode(password);
+        this.password = password; 
     }
 }

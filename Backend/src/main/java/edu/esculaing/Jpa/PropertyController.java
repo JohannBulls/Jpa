@@ -5,9 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * REST controller for managing properties.
- */
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/properties")
 public class PropertyController {
