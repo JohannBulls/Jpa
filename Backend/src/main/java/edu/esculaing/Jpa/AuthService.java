@@ -14,8 +14,7 @@ public class AuthService {
     private PasswordEncoder passwordEncoder;
 
     /**
-     * Registers a new user by encrypting their password and saving them to the
-     * database.
+     * Registers a new user by encrypting their password and saving them to the database.
      * 
      * @param user The user to register.
      * @return A message indicating success or failure.
@@ -24,6 +23,7 @@ public class AuthService {
         if (userRepository.findByUsername(user.getUsername()) != null) {
             return "Usuario ya registrado";
         }
+        // Encripta la contraseña antes de guardarla en la base de datos
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "Usuario registrado correctamente";
@@ -36,19 +36,24 @@ public class AuthService {
      * @return A boolean indicating if the authentication was successful.
      */
     public boolean authenticateUser(User loginRequest) {
-
         User user = userRepository.findByUsername(loginRequest.getUsername());
-        if (user != null) {
-            System.out.println("Contraseña ingresada: " + loginRequest.getPassword());
-            System.out.println("Hash almacenado: " + user.getPassword());
-            if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
-                return true;
-            }
+        
+        if (user == null) {
+            System.out.println("Usuario no encontrado");
+            return false;
         }
-        if (user != null && passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+    
+        System.out.println("Contraseña ingresada en texto plano: " + loginRequest.getPassword());
+        System.out.println("Hash en la base de datos: " + user.getPassword());
+    
+        // Comparar las contraseñas
+        if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+            System.out.println("¡Contraseña correcta!");
             return true;
+        } else {
+            System.out.println("Contraseña incorrecta");
+            return false;
         }
-        return false;
     }
-
+    
 }

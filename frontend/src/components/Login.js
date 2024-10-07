@@ -10,6 +10,10 @@ function Login() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    
+    console.log("Enviando usuario:", username);
+    console.log("Enviando contraseña:", password);
+    
     try {
       const response = await axios.post('http://localhost:8080/auth/login', {
         username,
@@ -20,6 +24,8 @@ function Login() {
         sessionStorage.setItem('authenticated', true);
         setError('');
         navigate('/properties');
+      } else {
+        setError('Credenciales inválidas');
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -27,9 +33,9 @@ function Login() {
       } else {
         setError('Error al iniciar sesión');
       }
-      console.error('Login error:', error);
     }
   };
+  
 
   return (
     <div className="login-container">
