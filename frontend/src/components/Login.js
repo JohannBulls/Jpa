@@ -15,15 +15,18 @@ function Login() {
         username,
         password,
       });
-      if (response.data === 'Login exitoso') {
+  
+      if (response.status === 200) {
         sessionStorage.setItem('authenticated', true);
         setError('');
         navigate('/properties');
-      } else {
-        setError('Credenciales inválidas');
       }
     } catch (error) {
-      setError('Error al iniciar sesión');
+      if (error.response && error.response.status === 401) {
+        setError('Credenciales inválidas');
+      } else {
+        setError('Error al iniciar sesión');
+      }
       console.error('Login error:', error);
     }
   };

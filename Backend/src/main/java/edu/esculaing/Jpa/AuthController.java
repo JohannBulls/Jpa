@@ -1,7 +1,8 @@
 package edu.esculaing.Jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -10,41 +11,24 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private AuthService authService;
 
     @PostMapping("/register")
-    public String registerUser(@RequestBody User user) {
-        if (userRepository.findByUsername(user.getUsername()) != null) {
-            return "Usuario ya registrado";
+    public ResponseEntity<String> registerUser(@RequestBody User user) {
+        String responseMessage = authService.registerUser(user);
+        if (responseMessage.equals("Usuario ya registrado")) {
+            return new ResponseEntity<>(responseMessage, HttpStatus.CONFLICT);
         }
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return "Usuario registrado correctamente";
+        return new ResponseEntity<>(responseMessage, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestBody User loginRequest) {
-
-        User user = userRepository.findByUsername(loginRequest.getUsername());
-
-        if (user != null) {
-            // Imprimir la contraseña en hash que está en la base de datos y login
-            System.out.println("Hash almacenado: " + user.getPassword());
-            System.out.println("Hash Login: " + loginRequest.getPassword());
-
-            if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
-                System.out.println("Contraseña correcta");
-                return "Login exitoso";
-            } else {
-                System.out.println("Contraseña incorrecta");
-                return "Credenciales inválidas";
-            }
+    public ResponseEntity<String> loginUser(@RequestBody User loginRequest) {
+        boolean isAuthenticated = authService.authenticateUser(loginRequest);
+        if (isAuthenticated) {
+            return new ResponseEntity<>("Login exitoso", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Credenciales inválidas", HttpStatus.UNAUTHORIZED);
         }
-        System.out.println("Usuario no encontrado");
-        return "Usuario no encontrado";
     }
 }
