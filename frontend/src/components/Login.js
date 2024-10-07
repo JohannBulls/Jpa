@@ -15,7 +15,7 @@ function Login() {
         username,
         password,
       });
-      if (response.data === "Login exitoso") {
+      if (response.data === 'Login exitoso') {
         sessionStorage.setItem('authenticated', true);
         setError('');
         navigate('/properties');

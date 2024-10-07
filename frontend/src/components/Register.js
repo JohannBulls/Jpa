@@ -24,7 +24,7 @@ function Register() {
       });
   
       if (response.data === "Usuario registrado correctamente") {
-        navigate('/login'); 
+        navigate('/login');
       } else {
         setError('Error al registrar el usuario');
       }

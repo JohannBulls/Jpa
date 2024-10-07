@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Main class for running the Spring Boot application.
- * It initializes the application context and runs the application.
  */
 @SpringBootApplication
 public class AccessingDataJpaApplication {
