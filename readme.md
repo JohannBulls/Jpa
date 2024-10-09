@@ -2,19 +2,6 @@
 
 A **React + Spring Boot** application for managing properties. This system allows users to register, log in, add, edit, and delete properties, providing a full CRUD experience. The backend is built with Spring Boot, while the frontend is developed using React.
 
-## Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Backend Setup](#backend-setup)
-- [Frontend Setup](#frontend-setup)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Features
 
 - **User Authentication**: Secure user login and registration.
@@ -169,7 +156,8 @@ The project was deployed on AWS using two separate EC2 instances: one for the ba
 
 ## Project Structure
 
-![alt text](Backend/src/main/resources/static/img/image.png)(https://mermaid.live/view#pako:eNqlVm1vGjkQ_isrS5UWhUQhCQT4UIm8VL1TeopAaaU7-sGsh8XKYru2N3c0Sn77jfcFvMtuSls-AJ53zzwznmcSSQZkTKKEGnPDaazpei4C_Lx7F1zR6BEEC64dEwySclYmHEyiCIzhIr6hlv6p6ESphEfUcimC51zQfY7WlItwZjVK_vM1oDo2nZz7MhcVe6ldXUthtUwS0L6JY8eagX7iEQR0999zoiHmxoJ-MKBD9xWk-NUJpmCUFAZuheV285qH8eopJjLmYqeVHafwLQVj39ZuiL4M0Q_dWZ2CkoZbqTdZVLujJ3ePRv6Vmt0KVxEdqOr5gKvm0XmCLlOAkWNNoO2GCykToKLxStdSGyzIkseVekZbcqrRaCf4AotPT9GO1GwsNVauq3U9upMiDjjzKPklgiXXxv5F17DPQmt1jpU5L6wmoRbBvZYKtN0cFgFlTCO8PcaNTBcJBEpXkVeQDf_eECwDE2muXE_8crwtPVGyPXCpPZLnNAY7SZJCi4NB53eIo9fSzmtVtiRfbf5gYZGlzjYmHw4aEF8lI9xmuQymUSlVzFcq7HeDw7QZJLCv3QmeZFnJllR6ufJBsOSCXW0mecXDKgCas1SzP4Mo1TwrVb1bTMH6wBPs2euVG4YfrVWlSrDCQ2drwRPzjNSGAZbuvmk81KLK2v0gsLsBIhq7rfT80-itzb39dD8UPsNaDJ1MtWYTH6MPGvsge43kGocyDrb6gzQFGtmKJ43yLl3NE1upijAGMLOIylK8JN4ulxDZFiN3bpr-2MyKCpZAJhzCE8beqSQ0jhMoK_qZG77gCWKhxeW0mP-Hei3lf9vxbnYc6nqWLtbc7jvOubcMedtG32PfZF0eYmO3RWOxLsCmMrWVN_eIm4n39LF9LE0hyfYUs-Jqh6K3Fprj4_e1BaXQqS4tpVhlQfFXAyfw0LAD1GUa-7vhRchkW8Z-1v9tDmsjq9FnLpm3VXYzpYposXUcIQN0lVSirUrdQadyEwcl_wY5M--ptoxv4d8mUAPGNnDSJbh_4DbKcN_N4DIniBKcemSMfxnVj3MyFy8oh5uTnG1ERMZWp9AlWqbxioyXNDF4yh-vYlkuRRQVf0vpH8n4mfxHxheD_slgMBqNLofnl5fDwXm_SzZk3Ls4GfWH_fPh2ah3MbgYnfZeuuR7ZuH0ZHQ26PWGvd6gfzo4uxz2ugSYq92nYll3Py__A4RbyJA)
+[![Description of the image](Backend/src/main/resources/static/img/image.png)](https://acortar.link/HO12z7 "Click here to view more details")
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
